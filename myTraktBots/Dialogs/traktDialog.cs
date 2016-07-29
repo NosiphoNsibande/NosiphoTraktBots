@@ -39,12 +39,12 @@ namespace myTraktBots.Dialogs
                    string message = ($"####Hi :smile:!!,my name is traktBots and i can help you with the following infor" + $"{Environment.NewLine}{Environment.NewLine}" + $"#####a).**Popular Movies and tv Shows**" + $"{Environment.NewLine}{Environment.NewLine}" + "#####b). **Most Played/Watched Movies and tv shows**" + $"{Environment.NewLine}{Environment.NewLine}" +
                    "#####c).**Trending movies and tv shows**" + $"{Environment.NewLine}{Environment.NewLine}" + "#####d).**Box office Movies**" + $"{Environment.NewLine}{Environment.NewLine}" +
                    "#####e).**Search the movie or show by title e.g** **The Flash**" + $"{Environment.NewLine}{Environment.NewLine}" + "#####f)**.Get movie by movie released date e.g** **2016-01-01/7**  **movies**" + $"{Environment.NewLine}{Environment.NewLine}" +
-                   "#####g).Resert"+  $"{Environment.NewLine}{Environment.NewLine}" + $"#####**NOTE:by Searching the  tv show by title,you can also get related shows and the number of seasons for that show!!! :+1:**");
+                   "#####g).Resert"+  $"{Environment.NewLine}{Environment.NewLine}" + "#####h).Option 6 to go to trakt website for more information" + $"{Environment.NewLine}{Environment.NewLine}" + $"#####**NOTE:by Searching the  tv show by title,you can also get related shows!!! :+1:**");
                    await context.PostAsync(message);
                    context.Wait(MessageReceived);
             }
-            //good bye
-            if(result.Query.ToLower().Contains("bye")||result.Query.ToLower().Contains("goodbye"))
+           //good bye
+          else  if(result.Query.ToLower().Contains("bye")||result.Query.ToLower().Contains("goodbye"))
             {
                 var ImagesUrl1 = new Uri("http://www.greetingsfromheart.com/images/bye_bye/bye_bye.gif");
                 string message = ($"[![Thank you](" + ImagesUrl1 + ")](" + ImagesUrl1 + ")");
@@ -205,7 +205,7 @@ namespace myTraktBots.Dialogs
                    string message = ($"####Hi :smile:!!,my name is traktBots and i can help you with the following infor" + $"{Environment.NewLine}{Environment.NewLine}" + $"#####a).**Popular Movies and tv Shows**" + $"{Environment.NewLine}{Environment.NewLine}" + "#####b). **Most Played/Watched Movies and tv shows**" + $"{Environment.NewLine}{Environment.NewLine}" +
                    "#####c).**Trending movies and tv shows**" + $"{Environment.NewLine}{Environment.NewLine}" + "#####d).**Box office Movies**" + $"{Environment.NewLine}{Environment.NewLine}" +
                    "#####e).**Search the movie or show by title e.g** **The Flash**" + $"{Environment.NewLine}{Environment.NewLine}" + "#####f)**.Get movie by movie released date e.g** **2016-01-01/7**  **movies**" + $"{Environment.NewLine}{Environment.NewLine}" +
-                   "#####g).Resert"+ $"{Environment.NewLine}{Environment.NewLine}" + $"#####**NOTE:by Searching the  tv show by title,you can also get related shows and the number of seasons for that show!!! :+1:**");
+                   "#####g).Resert"+ $"{Environment.NewLine}{Environment.NewLine}" + "#####h).Option 6 to go to trakt website for more information" + $"{Environment.NewLine}{Environment.NewLine}" + $"#####**NOTE:by Searching the  tv show by title,you can also get related shows!!! :+1:**");
                    await context.PostAsync(message);
                    context.Wait(MessageReceived);
 
@@ -313,7 +313,7 @@ namespace myTraktBots.Dialogs
                 }
 
             }
-            string message = $"####Trending  movies:####" + tredMovies + $"{Environment.NewLine }{ Environment.NewLine }>" + $"#####**NOTE:if the movie you looking is not on this list,you can search it by typing it **title**!!!";
+            string message = $"####Trending  movies:####" + tredMovies + $"{Environment.NewLine }{ Environment.NewLine }>" + $"#####NOTE:if the movie you looking is not on this list,you can search it by typing it title!!!";
             await context.PostAsync(message);
             context.Wait(MessageReceived);
         }
@@ -345,7 +345,7 @@ namespace myTraktBots.Dialogs
                     count = count + 1;
                 }
             }
-            string message = $"####Trending Tv shows:####" + tredShow + $"{Environment.NewLine }{ Environment.NewLine }>" + $"#####**NOTE:if the series(show) you looking is not on this list,you can search it by typing it **title**!!!";
+            string message = $"####Trending Tv shows:####" + tredShow + $"{Environment.NewLine }{ Environment.NewLine }>" + $"#####NOTE:if the series(show) you looking is not on this list,you can search it by typing it title!!!";
             await context.PostAsync(message);
             context.Wait(MessageReceived);
         }
@@ -373,7 +373,7 @@ namespace myTraktBots.Dialogs
                     count = count + 1;
                 }
             }
-            string message = $"####Popular Movies:####" + popMovies + $"{Environment.NewLine }{ Environment.NewLine }>" + "#####**NOTE:if the movie you looking is not on this list,you can search it by typing it **title**";
+            string message = $"####Popular Movies:####" + popMovies + $"{Environment.NewLine }{ Environment.NewLine }>" + "#####NOTE:if the movie you looking is not on this list,you can search it by typing it title";
             await context.PostAsync(message);
             context.Wait(MessageReceived);
         }
@@ -402,7 +402,7 @@ namespace myTraktBots.Dialogs
                      count = count + 1;
                 }
             }
-            string message = $"#### Popular shows:####" + popshow + $"{Environment.NewLine }{ Environment.NewLine }>" + "#####**NOTE:if the Tv show you looking is not on this list,you can search it by  it **title**";
+            string message = $"#### Popular shows:####" + popshow + $"{Environment.NewLine }{ Environment.NewLine }>" + "#####NOTE:if the Tv show you looking is not on this list,you can search it by  it title";
             await context.PostAsync(message);
             context.Wait(MessageReceived);
         }
@@ -431,7 +431,7 @@ namespace myTraktBots.Dialogs
                     
                 }
             }
-            string message = $"####Most Played Movies####" + playedMovies + $"{Environment.NewLine }{ Environment.NewLine }>" + "#####**NOTE:if the movie you looking is not on this list,you can search it by typing it **name**";
+            string message = $"####Most Played Movies####" + playedMovies + $"{Environment.NewLine }{ Environment.NewLine }>" + "#####**NOTE:if the movie you looking is not on this list,you can search it by typing it name";
             await context.PostAsync(message);
             context.Wait(MessageReceived);
         }
@@ -450,7 +450,7 @@ namespace myTraktBots.Dialogs
                 var resShow = Newtonsoft.Json.JsonConvert.DeserializeObject<List<showplayed>>(responseStringShow);
                 for (int i = 0; i < resShow.Count; i++)
                 {
-                    count = i;
+                    
                     playedYearshow = resShow[i].show.year;
                     playedshoww = resShow[i].watcher_count;
                     string url = getshowImageUrl(resShow[i].show.ids.imdb);
@@ -460,7 +460,7 @@ namespace myTraktBots.Dialogs
 
                 }
             }
-            string message = $"#### Most Watched shows:####" + playedshow + $"{Environment.NewLine }{ Environment.NewLine }>" + "#####**NOTE:if the tv show you looking is not on this list,you can search it by typing it **name**";
+            string message = $"####Most Watched shows:####" + playedshow + $"{Environment.NewLine }{ Environment.NewLine }>" + "#####NOTE:if the tv show you looking is not on this list,you can search it by typing it name";
             await context.PostAsync(message);
             context.Wait(MessageReceived);
         }
@@ -485,7 +485,7 @@ namespace myTraktBots.Dialogs
                     count = count + 1;
                 }
             }
-            string message = $"####Box Office Movies:####" + boxOfficeMo + $"{Environment.NewLine }{ Environment.NewLine }>" +"#####**NOTE:this list is for box office movies only,you can get ather movies by movie *title*";
+            string message = $"####Box Office Movies:####" + boxOfficeMo + $"{Environment.NewLine }{ Environment.NewLine }>" +"#####NOTE:this list is for box office movies only,you can get ather movies by movie title";
             await context.PostAsync(message);
             context.Wait(MessageReceived);
         }
@@ -517,7 +517,7 @@ namespace myTraktBots.Dialogs
                 }
 
             }
-            string message = $"####2016 movies:####" + caleMovies + $"{Environment.NewLine }{ Environment.NewLine }>" + "#####**NOTE:if the movie you looking is not on this list,you can search it by typing it *name*";
+            string message = $"####2016 movies:####" + caleMovies + $"{Environment.NewLine }{ Environment.NewLine }>" + "#####NOTE:if the movie you looking is not on this list,you can search it by typing it name";
             await context.PostAsync(message);
             context.Wait(MessageReceived);
         }
@@ -539,17 +539,17 @@ namespace myTraktBots.Dialogs
                 {
                    
                     released2 = resShow[i].released;
-                    string url = getImaggeUrl(resShow[0].movie.ids.imdb);
-                    if(i==0)
-                    {
-                        caleMovies2 += $"{Environment.NewLine }{ Environment.NewLine }#####" + count + ".**" + resShow[i].movie.title.ToString() + "**\t\t\t\t\t" + $"**:released date:**" + "\t\t\t\t\t**" + released2 + "\t\t\t\t\t" + $"**{Environment.NewLine }{ Environment.NewLine }" + ($"[![View full Image](" + url + ")](" + url + ")");
-                    }
+                   // string url = getImaggeUrl(resShow[0].movie.ids.imdb);
+                   // if(i==0)
+                   /// {
+                        //caleMovies2 += $"{Environment.NewLine }{ Environment.NewLine }#####" + count + ".**" + resShow[i].movie.title.ToString() + "**\t\t\t\t\t" + $"**:released date:**" + "\t\t\t\t\t**" + released2 + "\t\t\t\t\t" + $"**{Environment.NewLine }{ Environment.NewLine }" + ($"[![View full Image](" + url + ")](" + url + ")");
+                    //}
                     caleMovies2 += $"{Environment.NewLine }{ Environment.NewLine }#####" + count + ".**" + resShow[i].movie.title.ToString() + "**\t\t\t\t\t" + $"**:released date:**" + "\t\t\t\t\t**" + released2 + "\t\t\t\t\t" + $"**{Environment.NewLine }{ Environment.NewLine }";
                     count = count + 1;
                 }
 
             }
-            string message = $"####2014 movies:####" + caleMovies2 + $"{Environment.NewLine }{ Environment.NewLine }>" + "#####**NOTE:if the movie you looking is not on this list,you can search it by typing it *name*";
+            string message = $"####2014 movies:####" + caleMovies2 + $"{Environment.NewLine }{ Environment.NewLine }" + "#####NOTE:if the movie you looking is not on this list,you can search it by typing it name";
             await context.PostAsync(message);
             context.Wait(MessageReceived);
         }
@@ -580,7 +580,7 @@ namespace myTraktBots.Dialogs
                 }
 
             }
-            string message = $"####2015 Movies:####" + caleMovies2 + $"{Environment.NewLine }{ Environment.NewLine }>" + "#####**NOTE:if the movie you looking is not on this list,you can search it by typing it *name*";
+            string message = $"####2015 Movies:####" + caleMovies2 + $"{Environment.NewLine }{ Environment.NewLine }>" + "#####NOTE:if the movie you looking is not on this list,you can search it by typing it name";
             await context.PostAsync(message);
             context.Wait(MessageReceived);
         }
@@ -606,7 +606,7 @@ namespace myTraktBots.Dialogs
         {
            
             System.Diagnostics.Process.Start("https://trakt.tv/home");
-            string message = "succefull directed to trakt home page :wink: :+1:";
+            string message = "successfully directed to trakt home page :wink: :+1:";
             await context.PostAsync(message);
             context.Wait(MessageReceived);
 
@@ -629,8 +629,8 @@ namespace myTraktBots.Dialogs
             string message=
             ($"#####*What is Trakt:?*#####" + $"{ Environment.NewLine }{ Environment.NewLine }" +
             $"#####Trakt is a platform that does many things,but primarily keeps track of TV shows and movies you watch.It integrates with your media center or home theater PC to enable scrobbling so everything is automatic." + $"{ Environment.NewLine }{ Environment.NewLine }" + $"#####Some people like to check in from their phone, so we enable that too.Discover new shows and movies," +
-            $"#####follow people with similar tastes and voice your opinion on by using the Trakt website or one of the many community apps that were built using our API." + $"{ Environment.NewLine } { Environment.NewLine }"+$"{ Environment.NewLine } { Environment.NewLine }"+$"#####Complete feature list Trakt is free to use!If you really enjoy it, consider upgrading your account to VIP which unlocks some awesome VIP only features like no ads," +
-            $"#####year in review, iCal feeds, advanced filtering, list cloning, and widgets.Stop reading and sign up now!#####");
+            $"follow people with similar tastes and voice your opinion on by using the Trakt website or one of the many community apps that were built using our API." + $"{ Environment.NewLine } { Environment.NewLine }"+$"{ Environment.NewLine } { Environment.NewLine }"+$"#####Complete feature list Trakt is free to use!If you really enjoy it, consider upgrading your account to VIP which unlocks some awesome VIP only features like no ads," +
+            $"year in review, iCal feeds, advanced filtering, list cloning, and widgets.Stop reading and sign up now!#####");
             await context.PostAsync(message);
             context.Wait(MessageReceived);
         }
