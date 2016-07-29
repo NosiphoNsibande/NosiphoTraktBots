@@ -1,69 +1,51 @@
-﻿using System;
-using System.Linq;
-using System.Net;
+﻿using Microsoft.Bot.Builder.Dialogs;
+using Microsoft.Bot.Connector;
+using myTraktBots.Dialogs;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+//using traktDialog.Dialogs;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Microsoft.Bot.Connector;
-using Newtonsoft.Json;
-
 namespace myTraktBots
 {
-    [BotAuthentication]
+    //[BotAuthentication]
     public class MessagesController : ApiController
     {
         /// <summary>
         /// POST: api/Messages
         /// Receive a message from a user and reply to it
         /// </summary>
+        //search for Movies 
+        [ResponseType(typeof(void))]
         public async Task<HttpResponseMessage> Post([FromBody]Activity activity)
         {
-            if (activity.Type == ActivityTypes.Message)
+            if (activity != null)
             {
-                ConnectorClient connector = new ConnectorClient(new Uri(activity.ServiceUrl));
-                // calculate something for us to return
-                int length = (activity.Text ?? string.Empty).Length;
+                // one of these will have an interface and process it
+                string PlayedMovie = ""; string popmovie = ""; string popshow = ""; string movieW = ""; long movieWatchers = 0; long showWatchers = 0;
+                long playedMoviYear = 0; long showyear = 0; long yearMovie = 0; int count = 1; long yearW = 0;
+                long playedMovieW = 0;
+                string[] counta = { "a.", "b.", "c.", "d.", "e.", "f.", "g.", "h.", "i.", "j.", "k.", "l.", "m.", "n.", "o.", "p.", "q.", "r.", "s.", "t.", "u.", "y.", "z." };
+                switch (activity.GetActivityType())
+                {
+                    case ActivityTypes.Message:
+                    await Conversation.SendAsync(activity, () => new traktDialog());
+                    break;
+                    case ActivityTypes.ConversationUpdate:
+                    case ActivityTypes.ContactRelationUpdate:
+                    case ActivityTypes.Typing:
+                    case ActivityTypes.DeleteUserData:
+                    default:
+                        Trace.TraceError($"Unknown activity type ignored: {activity.GetActivityType()}");
+                        break;
 
-                // return our reply to the user
-                Activity reply = activity.CreateReply($"You sent {activity.Text} which was {length} characters");
-                await connector.Conversations.ReplyToActivityAsync(reply);
+                }
             }
-            else
-            {
-                HandleSystemMessage(activity);
-            }
-            var response = Request.CreateResponse(HttpStatusCode.OK);
-            return response;
-        }
-
-        private Activity HandleSystemMessage(Activity message)
-        {
-            if (message.Type == ActivityTypes.DeleteUserData)
-            {
-                // Implement user deletion here
-                // If we handle user deletion, return a real message
-            }
-            else if (message.Type == ActivityTypes.ConversationUpdate)
-            {
-                // Handle conversation state changes, like members being added and removed
-                // Use Activity.MembersAdded and Activity.MembersRemoved and Activity.Action for info
-                // Not available in all channels
-            }
-            else if (message.Type == ActivityTypes.ContactRelationUpdate)
-            {
-                // Handle add/remove from contact lists
-                // Activity.From + Activity.Action represent what happened
-            }
-            else if (message.Type == ActivityTypes.Typing)
-            {
-                // Handle knowing tha the user is typing
-            }
-            else if (message.Type == ActivityTypes.Ping)
-            {
-            }
-
-            return null;
+            return new HttpResponseMessage(System.Net.HttpStatusCode.Accepted);
         }
     }
 }
