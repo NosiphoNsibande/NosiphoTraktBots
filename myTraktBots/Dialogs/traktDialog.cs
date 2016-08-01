@@ -39,7 +39,7 @@ namespace myTraktBots.Dialogs
                    string message = ($"####Hi :smile:!!,my name is traktBots and i can help you with the following infor" + $"{Environment.NewLine}{Environment.NewLine}" + $"#####a).**Popular Movies and tv Shows**" + $"{Environment.NewLine}{Environment.NewLine}" + "#####b). **Most Played/Watched Movies and tv shows**" + $"{Environment.NewLine}{Environment.NewLine}" +
                    "#####c).**Trending movies and tv shows**" + $"{Environment.NewLine}{Environment.NewLine}" + "#####d).**Box office Movies**" + $"{Environment.NewLine}{Environment.NewLine}" +
                    "#####e).**Search the movie or show by title e.g** **The Flash**" + $"{Environment.NewLine}{Environment.NewLine}" + "#####f)**.Get movie by movie released date e.g** **2016-01-01/7**  **movies**" + $"{Environment.NewLine}{Environment.NewLine}" +
-                   "#####g).Resert"+  $"{Environment.NewLine}{Environment.NewLine}" + "#####h).Option 6 to go to trakt website for more information" + $"{Environment.NewLine}{Environment.NewLine}" + $"#####**NOTE:by Searching the  tv show by title,you can also get related shows!!! :+1:**");
+                   "#####g).Reset"+  $"{Environment.NewLine}{Environment.NewLine}" + "#####h).Option 6 to go to trakt website for more information" + $"{Environment.NewLine}{Environment.NewLine}" + $"#####**NOTE:by Searching the  tv show by title,you can also get related shows!!! :+1:**");
                    await context.PostAsync(message);
                    context.Wait(MessageReceived);
             }
@@ -205,7 +205,7 @@ namespace myTraktBots.Dialogs
                    string message = ($"####Hi :smile:!!,my name is traktBots and i can help you with the following infor" + $"{Environment.NewLine}{Environment.NewLine}" + $"#####a).**Popular Movies and tv Shows**" + $"{Environment.NewLine}{Environment.NewLine}" + "#####b). **Most Played/Watched Movies and tv shows**" + $"{Environment.NewLine}{Environment.NewLine}" +
                    "#####c).**Trending movies and tv shows**" + $"{Environment.NewLine}{Environment.NewLine}" + "#####d).**Box office Movies**" + $"{Environment.NewLine}{Environment.NewLine}" +
                    "#####e).**Search the movie or show by title e.g** **The Flash**" + $"{Environment.NewLine}{Environment.NewLine}" + "#####f)**.Get movie by movie released date e.g** **2016-01-01/7**  **movies**" + $"{Environment.NewLine}{Environment.NewLine}" +
-                   "#####g).Resert"+ $"{Environment.NewLine}{Environment.NewLine}" + "#####h).Option 6 to go to trakt website for more information" + $"{Environment.NewLine}{Environment.NewLine}" + $"#####**NOTE:by Searching the  tv show by title,you can also get related shows!!! :+1:**");
+                   "#####g).Reset"+ $"{Environment.NewLine}{Environment.NewLine}" + "#####h).Option 6 to go to trakt website for more information" + $"{Environment.NewLine}{Environment.NewLine}" + $"#####**NOTE:by Searching the  tv show by title,you can also get related shows!!! :+1:**");
                    await context.PostAsync(message);
                    context.Wait(MessageReceived);
 
